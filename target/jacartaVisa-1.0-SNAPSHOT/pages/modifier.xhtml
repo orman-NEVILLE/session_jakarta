@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="jakarta.faces.core">
+<h:head>
+    <title>À propos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .panelGrid {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .panelGrid label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .panelGrid input {
+            width: calc(100% - 10px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            background-color: #5cb85c; /* Couleur verte */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #4cae4c; /* Couleur verte plus foncée au survol */
+        }
+
+        .message {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="container">
+        <h1>Modification</h1>
+
+        <h:form>
+            <h:panelGrid columns="2" styleClass="panelGrid">
+
+                <h:outputLabel for="description" value="Description :" class="form-label" />
+                <h:inputTextarea id="description" value="#{profilBean.description}" styleClass="form-control"/>
+                
+                <h:outputLabel for="password" value="Nouveau mot de passe:" />
+                <h:inputSecret id="password" value="#{profilBean.newPassword}" />
+
+                <h:outputLabel for="confirmPassword" value="Confirmer le mot de passe:" />
+                <h:inputSecret id="confirmPassword" value="#{profilBean.confirmPassword}" />
+            </h:panelGrid>
+
+            <h:commandButton value="Modifier" action="#{profilBean.modifierProfil()}" styleClass="button">
+               <f:ajax execute="@form" render="message" /> </h:commandButton>
+            <h:messages id="message" globalOnly="true" styleClass="message" />
+
+
+            <h:messages globalOnly="true" styleClass="message" />
+        </h:form>
+    </div>
+</h:body>
+</html>
